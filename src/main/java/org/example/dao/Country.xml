@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.dao.Country">
+
+    <select id="FUZHUCHAXUN" resultType="org.example.domian.Country">
+        select *  from country where cou_min = #{crountryid}
+    </select>
+
+
+
+    <resultMap id="CouViewMin" type="org.example.domian.Country">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <association property="ministerSet" column="id" select="org.example.dao.Minister.FUZHUCOU"/>
+    </resultMap>
+    <select id="CouViewMin" resultMap="CouViewMin">
+        select * from country
+    </select>
+
+</mapper>

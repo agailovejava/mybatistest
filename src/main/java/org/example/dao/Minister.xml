@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.dao.Minister">
+
+    <resultMap id="MinViewCou" type="org.example.domian.Minister">
+
+        <id property="mid" column="mid"/>
+        <result property="mname" column="mname"/>
+        <result property="crountryid" column="crountryid"/>
+        <association property="countries" column="crountryid" select="org.example.dao.Country.FUZHUCHAXUN"/>
+
+    </resultMap>
+
+    <select id="MinViewCou" resultMap="MinViewCou">
+            select * from minister
+    </select>
+
+
+    <select id="FUZHUCOU" resultType="org.example.domian.Minister">
+            select * from minister where crountryid = #{id}
+    </select>
+
+
+
+</mapper>
